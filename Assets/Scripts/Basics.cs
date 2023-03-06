@@ -36,8 +36,15 @@ public class Basics : MonoBehaviour
 	{
 		for (int i = 0; i < _transforms.Count; i++)
 		{
+			if (_transforms[i] == null) continue;
 			_transforms[i].Translate(new Vector3(-1, 0, 0) * speed * Time.deltaTime);
 			_transforms[i].Rotate(new Vector3(-1, 0, 0) * rotateSpeed * Time.deltaTime);
+
+			float posX = _transforms[i].position.x;
+			if (posX < -10f && _transforms[i].gameObject.name == "Cube")
+			{
+				Destroy(_transforms[i].gameObject);
+			}
 		}
 	}
 
